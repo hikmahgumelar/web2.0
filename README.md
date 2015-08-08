@@ -6,3 +6,10 @@ WEB 2.0 BLOG Application powered by
 - Mongodb
 - Passport
 
+for install
+
+- change ./db to your database
+- sudo npm install
+- sudo npm start
+
+

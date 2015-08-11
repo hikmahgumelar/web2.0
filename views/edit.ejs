@@ -545,15 +545,15 @@
                                     </h3>
                                 </div>
                                 <div class="box-body no-padding">
-                                    <form action="/input" method="post">
+                                    <form action="/update" method="post">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="judul" placeholder="JUDUL"/>
+                                            <input type="text" class="form-control" name="judul" placeholder="JUDUL" value=<%=data.judul%> />
                                              
-                                            <input type="text" class="form-control" name="author" placeholder=<%=user.username%> value=<%=user.username%> />
+                                            <input type="text" class="form-control" name="author" placeholder=<%=data.pengarang%> value=<%=data.pengarang%> />
                                         
                                         <div>
 
-                                            <textarea class="textarea" name="isi" placeholder="Content" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            <textarea class="textarea" name="isi" placeholder="Content" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><%=data.isi%></textarea>
                                         </div>
                                     
                                         <div class="submit"><input type="submit" name="btn_submit" value="Simpan"/></div>
@@ -577,7 +577,7 @@
                                                 <td><a href="/detail/<%=datarinci.id%>"><%=datarinci.judul%></div></td>
                                                 <td><%=datarinci.tgl%></td>
                                                 <td>
-<a class="btn btn-warning" href="/ubah/<%=datarinci.id%>"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
+<a class="btn btn-warning" href="#"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
 
 <a class="btn btn-danger" href="/hapus/<%=datarinci.id%>"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
 

@@ -24,9 +24,9 @@ var postSchema = new Schema({
 
 
 });
-
+/* add postingan ke database */
 var posts = mongoose.model('posts', postSchema);
-var input = function(req, res){
+ router.post('/input',function(req, res){
 var tanggal = new Date();
 new posts({
     judul : req.body.judul,
@@ -36,9 +36,12 @@ new posts({
   }).save(function(err, prd){
     if(err) res.json(err);
     else    
-          res.redirect('/');
+          res.redirect('/home');
   });
-}
+})
+    
+
+
     /* GET PAGE utama */
     router.get('/', function(req, res){
 mongoose.model('posts').find(function(err, posts){
@@ -58,6 +61,23 @@ mongoose.model('posts').find(function(err, posts){
  	 res.render('detail', {title:"detail", data:posts});
 	});  
 	})
+	/* ubah data */
+	router.get('/ubah/:id', function(req, res){
+
+	mongoose.model('posts').findById(req.params.id,function(err, posts){
+
+ 	 res.render('edit', {user: req.user, title:"detail", data:posts});
+	});  
+	})
+
+	/* hapus data */
+	router.get('/hapus/:id', function(req, res){
+
+	mongoose.model('posts').findByIdAndRemove(req.params.id,function(err, posts){
+	res.redirect('/home'); 		
+	});  
+	})
+
 	/* Handle Login POST */
 	router.post('/login', passport.authenticate('login', {
 		successRedirect: '/home',

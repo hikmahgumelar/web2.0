@@ -44,7 +44,7 @@ new posts({
 
     /* GET PAGE utama */
     router.get('/', function(req, res){
-mongoose.model('posts').find(function(err, posts){
+    mongoose.model('posts').find(function(err, posts){
     	res.render('pageone', {title:"Halaman Utama", data:posts});
     });
 	})
@@ -69,7 +69,17 @@ mongoose.model('posts').find(function(err, posts){
  	 res.render('edit', {user: req.user, title:"detail", data:posts});
 	});  
 	})
-
+	/*  Update  */
+	router.post('/update/:id', function(req, res){
+	var tambah = ({
+		judul : req.body.judul,
+    	isi : req.body.isi
+	});
+	mongoose.model('posts').findByIdAndUpdate(req.params.id,tambah,function(err, posts){
+    res.redirect('/home');
+ 	 
+	});  
+	})
 	/* hapus data */
 	router.get('/hapus/:id', function(req, res){
 

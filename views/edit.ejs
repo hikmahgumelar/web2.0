@@ -506,25 +506,7 @@
                     <div class="row">
                         <!-- Left col -->
                         <section class="col-lg-6 connectedSortable"> 
-                        <% if( Array.isArray(data) ) { %>
-						<%data.forEach( function( datarinci ){ %>
-
-						<h2><a href="/detail/<%=datarinci.id%>">
-                        <%=datarinci.judul%></a></h2>  Pengarang : <%=datarinci.pengarang%>
-						<hr></hr>
-				        <p><%= datarinci.tgl %></p>
-                        <p><%-datarinci.isi%></p>   
-
-
-                        <hr></hr>
-                        <% })} else { %>
-						<b>
-						<h1>tidak ada artikel</h1>
-						</b>
-						<% }; %>
-						
-                        </li>
-
+                        <%=data.judul%>
 
                         </section>
                         <!-- /.Left col -->
@@ -545,9 +527,9 @@
                                     </h3>
                                 </div>
                                 <div class="box-body no-padding">
-                                    <form action="/update" method="post">
+                                    <form action="/update/<%=data.id%>" method="post">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="judul" placeholder="JUDUL" value=<%=data.judul%> />
+                                            <input type="text" class="form-control" name="judul" placeholder="JUDUL" value=<%=data.judul%>  />
                                              
                                             <input type="text" class="form-control" name="author" placeholder=<%=data.pengarang%> value=<%=data.pengarang%> />
                                         
@@ -561,37 +543,7 @@
                                     <div class="table-responsive">
                                         <!-- .table - Uses sparkline charts-->
                                     
-                                        <table class="table table-striped">
-                                            <tr>
-                                               
-                                                <th>JUDUL</th>
-                                                <th>TANGGAL</th>
-                                                <th>ACTION</th>
-                                            </tr>
-                                                <% if( Array.isArray(data) ) { %>
-                                                <%data.forEach( function( datarinci ){ %>
-
-                                            <tr>
                                     
-                                               
-                                                <td><a href="/detail/<%=datarinci.id%>"><%=datarinci.judul%></div></td>
-                                                <td><%=datarinci.tgl%></td>
-                                                <td>
-<a class="btn btn-warning" href="#"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
-
-<a class="btn btn-danger" href="/hapus/<%=datarinci.id%>"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
-
-
-                                                </td>
-                                                
-                                            </tr>
-                        	                    <% })} else { %>
-												<b>
-												<h1>tidak ada artikel</h1>
-												</b>
-												<% }; %>
-						
-                                        </table><!-- /.table -->
                                     </div>
                                 </div><!-- /.box-body-->
                                

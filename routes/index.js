@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var User = require('../models/user');
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
 	// Passport adds this method to request object. A middleware is allowed to add properties to
@@ -108,10 +108,13 @@ new posts({
 	}));
 
 	/* GET Home Page */
+
 	router.get('/home', isAuthenticated, function(req, res){
+		User.find(function(err, userss){
 		mongoose.model('posts').find(function(err, posts){
-		res.render('home', { user: req.user, title:"halaman admin", data:posts});
+		res.render('home', { user: req.user, title:"halaman admin", data:posts, datausers:userss});
 	});
+	})	
     })
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {

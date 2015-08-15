@@ -7,7 +7,7 @@
         <!-- bootstrap 3.0.2 -->
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="../css/font-awesome .min.css" rel="stylesheet" type="text/css" />
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
         <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Morris chart -->
@@ -35,7 +35,8 @@
         <header class="header">
             <a href="index.html" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                AdminLTE
+                <% var jumlahartikel = (data.length) - 1 %>   
+                Hallo <%=user.username%>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -374,7 +375,7 @@
                         <li>
                             <a href="pages/mailbox.html">
                                 <i class="fa fa-envelope"></i> <span>Artikel</span>
-                                <small class="badge pull-right bg-yellow"><%=data.length%></small>
+                                <small class="badge pull-right bg-yellow"><%=jumlahartikel%></small>
                             </a>
                         </li>
                         <li class="treeview">
@@ -421,7 +422,7 @@
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <h3>
-                                    <% var jumlahartikel = (data.length) - 1 %>   
+                                    
                                         <%=jumlahartikel%>
                                     </h3>
                                     <p>
@@ -508,7 +509,7 @@
                         <!-- Left col -->
 
                         <section class="col-lg-6 connectedSortable"> 
-                                <h2>Add Postingan</h2>
+                                <h2>Tambah Postingan Baru</h2>
                                 <div class="box-body no-padding">
                                     <form action="/input" method="post">
                                     <div class="form-group">
@@ -540,33 +541,30 @@
                                     
                                         <table class="table table-striped">
                                             <tr>
-                                               
+                                                <th>NO   </th>
                                                 <th>JUDUL</th>
                                                 <th>TANGGAL</th>
                                                 <th>ACTION</th>
                                             </tr>
-                                                <% if( Array.isArray(data) ) { %>
-                                                <%data.forEach( function( datarinci ){ %>
-
+                                            <% if (data.length){ %>
+                                            <% for(var i = 0;i < data.length;i++) { %>
                                             <tr>
                                     
-                                               
-                                                <td><a href="/detail/<%=datarinci.id%>"><%=datarinci.judul%></div></td>
-                                                <td><%=datarinci.tgl%></td>
+                                                <td><%=(i+1)%></td>
+                                                <td><a href="/detail/<%=data[i].id%>"><%=data[i].judul%></div></td>
+                                                <td><%=data[i].tgl%></td>
                                                 <td>
-<a class="btn btn-warning" href="/ubah/<%=datarinci.id%>"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
+<a class="btn btn-warning" href="/ubah/<%=data[i].id%>"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
 
-<a class="btn btn-danger" href="/hapus/<%=datarinci.id%>"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
+<a class="btn btn-danger" href="/hapus/<%=data[i].id%>"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
 
-
+                                                <% } 
+                                                }else{ %>   
+                                              <h1> Tidak Ada Artikel</h1>
+                                                <% } %>
                                                 </td>
                                                 
                                             </tr>
-                        	                    <% })} else { %>
-												<b>
-												<h1>tidak ada artikel</h1>
-												</b>
-												<% }; %>
 						
                                         </table><!-- /.table -->
                                     </div>

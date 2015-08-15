@@ -421,7 +421,8 @@
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <h3>
-                                        <%=data.length%>
+                                    <% var jumlahartikel = (data.length) - 1 %>   
+                                        <%=jumlahartikel%>
                                     </h3>
                                     <p>
                                         Jumlah Artikel
@@ -505,25 +506,28 @@
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
+
                         <section class="col-lg-6 connectedSortable"> 
-                        <% if( Array.isArray(data) ) { %>
-						<%data.forEach( function( datarinci ){ %>
+                                <h2>Add Postingan</h2>
+                                <div class="box-body no-padding">
+                                    <form action="/input" method="post">
+                                    <div class="form-group">
+                                            <input enable=no type="text" class="form-control" name="judul" placeholder="JUDUL" style="width: 100%; height: 5%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"value="<%=data.judul%>"/>
+                                    </div>     
+                                    <div>    
+                                            <input type="text" class="form-control" name="author" placeholder="<%=data.pengarang%>" style="width: 100%; height: 5%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" value=<%=user.username%> />
+                                        
+                                    </div>
 
-						<h2><a href="/detail/<%=datarinci.id%>">
-                        <%=datarinci.judul%></a></h2>  Pengarang : <%=datarinci.pengarang%>
-						<hr></hr>
-				        <p><%= datarinci.tgl %></p>
-                        <p><%-datarinci.isi%></p>   
-
-
-                        <hr></hr>
-                        <% })} else { %>
-						<b>
-						<h1>tidak ada artikel</h1>
-						</b>
-						<% }; %>
-						
-                        </li>
+                                            <div>
+                                                <textarea class="textarea" name="isi" placeholder="Content" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><%=data.isi%></textarea>
+                                            </div>
+                                    
+                                        <input type="submit" class="btn btn-primary" name="btn_submit" value="Simpan"/>
+                                        
+                                    
+                                    
+  
 
 
                         </section>
@@ -531,33 +535,6 @@
                         <!-- right col (We are only adding the ID to make the widgets sortable)-->
                         <section class="col-lg-6 connectedSortable">
                             <!-- Map box -->
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">                                        
-                                        <button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
-                                        <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
-                                    </div><!-- /. tools -->
-
-                                    <i class="fa fa-map-marker"></i>
-                                    <h3 class="box-title">
-                                        Posting
-                                    </h3>
-                                </div>
-                                <div class="box-body no-padding">
-                                    <form action="/input" method="post">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="judul" placeholder="JUDUL"/>
-                                             
-                                            <input type="text" class="form-control" name="author" placeholder=<%=user.username%> value=<%=user.username%> />
-                                        
-                                        <div>
-
-                                            <textarea class="textarea" name="isi" placeholder="Content" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                        </div>
-                                    
-                                        <div class="submit"><input type="submit" name="btn_submit" value="Simpan"/></div>
-                                    </form>
                                     <div class="table-responsive">
                                         <!-- .table - Uses sparkline charts-->
                                     

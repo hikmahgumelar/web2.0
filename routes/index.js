@@ -69,6 +69,16 @@ new posts({
  	 res.render('edit', {user: req.user, title:"detail", data:posts});
 	});  
 	})
+	/*Cari data*/
+
+	router.post('/cari', function(req, res){
+	var temukan = req.body.judul;
+	console.log(temukan);
+	mongoose.model('posts').find({judul: new RegExp(temukan, "i")}, function(err, posts){
+	res.render('cari', {title:"halaman cari", data:posts});
+	
+	});	
+	})
 	/*  Update  */
 	router.post('/update/:id', function(req, res){
 	var tambah = ({

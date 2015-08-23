@@ -74,7 +74,7 @@ new posts({
 	router.post('/cari', function(req, res){
 	var temukan = req.body.judul;
 	console.log(temukan);
-	mongoose.model('posts').find({judul: new RegExp(temukan, "i")}, function(err, posts){
+	mongoose.model('posts').find({isi: new RegExp(temukan, "i")}, function(err, posts){
 	res.render('cari', {title:"halaman cari", data:posts});
 	
 	});	

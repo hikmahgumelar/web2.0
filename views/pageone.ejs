@@ -71,38 +71,32 @@
                  <% if (data.length){ %>
                        <% for(i = data.length - 1; i > 0;i--) { %>
  
-                <h2>
-                   <a href="/detail/<%=data[i].id%>"><%=data[i].judul%></a>
+                <h2><a href="/detail/<%=data[i].id%>"><%=data[i].judul%></a></h2>
+                <p class="lead">by <%=data[i].pengarang%></p>
+                <p><span class="glyphicon glyphicon-time"></span>Posted on<%=data[i].tgl%></p>    
+                <hr></hr>
                 
-                        </h2>
-                <p class="lead">
-                    by <%=data[i].pengarang%>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span>Posted on<%=data[i].tgl%>
-                <hr></hr>    
-                <p><%-data[i].isi%></p>
-                 <a class="btn btn-primary" href="/detail/<%=data[i].id%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                    <% } 
-                     }else{ %>   
-                       <h1> Tidak Ada Artikel</h1>
-                       <% } %> 
-                </p>
-                <hr>
-                <hr>
-               
-
-                <hr>
-
-                <hr>
-
+                
+                <% var huruf = data[i].isi %>
+                <% var isi = huruf.substr(0,1000); %>
+                    
+                <p><%-isi%></p>
+                <a class="btn btn-primary" href="/detail/<%=data[i].id%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <hr></hr>
+                <% } 
+                }else{ %>   
+                <h1> Tidak Ada Artikel</h1>
+                <% } %> 
+                             
             </div>
-            <!-- Blog Sidebar Widgets Column -->
+            </div>
+                        <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">
 
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <div class="input-group">i
+                    <div class="input-group">
                         <form action="/cari" method="POST" >
                             <input type="text" class="form-control" name="judul" id="judul">
                             

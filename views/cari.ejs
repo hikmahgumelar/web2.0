@@ -79,8 +79,11 @@
                     by <%=data[i].pengarang%>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span>Posted on<%=data[i].tgl%>
-                <hr></hr>    
-                <p><%-data[i].isi%></p>
+                <hr></hr> 
+                <% var huruf = data[i].isi %>
+                <% var isi = huruf.substr(0,1000); %>
+                          
+                <p><%-isi%></p>
                  <a class="btn btn-primary" href="/detail/<%=data[i].id%>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
                     <% } 
                      }else{ %>   
@@ -89,11 +92,8 @@
                 </p>
                 <hr>
                 <hr>
-               
+            </div>   
 
-                <hr>
-
-                <hr>
 
             </div>
             <!-- Blog Sidebar Widgets Column -->

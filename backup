@@ -1,0 +1,5 @@
+hosts: dns files nis 
+passwd: ldap ldap nis 
+shadow: ldap ldap ldap 
+group: ldap ldap nis 
+netgroup: ldap ldap ldap

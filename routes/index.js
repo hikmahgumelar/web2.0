@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Twit = require('twit');
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
 	// Passport adds this method to request object. A middleware is allowed to add properties to
@@ -10,6 +11,7 @@ var isAuthenticated = function (req, res, next) {
 	// if the user is not authenticated then redirect him to the login page
 	res.redirect('/');
 }
+
 
 module.exports = function(passport){
 
@@ -40,8 +42,7 @@ new posts({
   });
 })
     
-
-
+    
     /* GET PAGE utama */
     router.get('/', function(req, res){
     mongoose.model('posts').find(function(err, posts){
@@ -131,6 +132,20 @@ new posts({
 		req.logout();
 		res.redirect('/');
 	});   
+
+/*twiter*/
+/* update twitan */
+router.post('/twetan', function(req, res){
+var isitwet = req.body.twet;
+var T = new Twit(require('../models/config.js'));
+T.post('statuses/update', { status: isitwet }, function(err, data, response) {
+console.log("Tweet berhasil")
+
+res.redirect('/home');
+})
+});
+/*-------*/	
+
 	return router;
 }
 

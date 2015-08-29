@@ -315,17 +315,16 @@
                             </a>
                         </li>
                         <li>
+                            <a href="pages/widgets.html">
+                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/tweet">
                                 <i class="fa fa-twitter"></i> <span>Twitter</span>
                                 <small class="badge pull-right bg-yellow">Modul Baru</small>
                             </a>
                         </li>
-                        <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
-                            </a>
-                        </li>
-                        
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-bar-chart-o"></i>
@@ -515,70 +514,51 @@
                         <!-- Left col -->
 
                         <section class="col-lg-6 connectedSortable"> 
-                                <h2>Tambah Postingan Baru</h2>
-                                <div class="box-body no-padding">
-                                    <form action="/input" method="post">
-                                    <div class="form-group">
-                                            <input enable=no type="text" class="form-control" name="judul" placeholder="JUDUL" style="width: 100%; height: 5%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"value="<%=data.judul%>"/>
-                                    </div>     
-                                    <div>    
-                                            <input type="text" class="form-control" name="author" placeholder="<%=data.pengarang%>" style="width: 100%; height: 5%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" value=<%=user.username%> />
-                                        
-                                    </div>
-
-                                            <div>
-                                                <textarea class="textarea" name="isi" placeholder="Content" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><%=data.isi%></textarea>
-                                            </div>
-                                    
-                                        <input type="submit" class="btn btn-primary" name="btn_submit" value="Simpan"/>
-                                        
-                                    
-                                    
-  
-
-
-                        </section>
-                        <!-- /.Left col -->
-                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                        <section class="col-lg-6 connectedSortable">
-                            <!-- Map box -->
-                                    <div class="table-responsive">
-                                        <!-- .table - Uses sparkline charts-->
-                                    
-                                        <table class="table table-striped">
-                                            <tr>
-                                                <th>NO   </th>
-                                                <th>JUDUL</th>
-                                                <th>TANGGAL</th>
-                                                <th>ACTION</th>
-                                            </tr>
-                                            <% if (data.length){ %>
-                                            <% for(var i = 0;i < data.length;i++) { %>
-                                            <tr>
-                                    
-                                                <td><%=(i+1)%></td>
-                                                <td><a href="/detail/<%=data[i].id%>"><%=data[i].judul%></div></td>
-                                                <td><%=data[i].tgl%></td>
-                                                <td>
-<a class="btn btn-warning" href="/ubah/<%=data[i].id%>"><i class="glyphicon glyphicon-edit"></i> Ubah</a>
-
-<a class="btn btn-danger" href="/hapus/<%=data[i].id%>"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
-
-                                                <% } 
-                                                }else{ %>   
-                                              <h1> Tidak Ada Artikel</h1>
-                                                <% } %>
-                                                </td>
-                                                
-                                            </tr>
-						
-                                        </table><!-- /.table -->
-                                    </div>
-                                </div><!-- /.box-body-->
+                            <!-- Tweet -->
                                
-                            <!-- /.box -->
+                <!-- Blog Search Well -->
+                <div class="col-md-4">
+                            <!-- Primary box -->
+                            <div class="box box-primary" style="width: 700px; height: 300px; font-size: 14px;" >
+                                <div data-original-title="Header tooltip" class="box-header" data-toggle="tooltip" title="">
+                                    <h3 class="box-title">Twitter Box</h3>
+                                    <div class="box-tools pull-right">
+                                        <button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button class="btn btn-primary btn-xs" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body"> 
+                                    <form role="form" action="/twetan" method="POST" >
+                                        <textarea type="text" class="form-control" name="twet" id="twet" style="width: 600px; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                        </textarea>
+                                        </p>
+                                        <button class="btn-lg btn-info" type="submit">
+                                            Tweet....                           
+                                        </button>
+                                        </p>
+                                    </form>                             
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <code>tweet bro</code>
+                                </div><!-- /.box-footer-->
+                            </div><!-- /.box -->
+                </div>
 
-                              
+
+                                  
+                
+                        
+                </section>
+                     
+                    
+
+                                
+                      <section class="col-lg-6 connectedSortable">
+                             
+                        
+                    </div>
+            
+                            <!-- tweet end -->
                             </div><!-- /.box (chat box) -->
 
                             </div><!-- /.box -->

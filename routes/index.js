@@ -113,7 +113,7 @@ new posts({
 
 	/* Handle Registration POST */
 	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/home',
+		successRedirect: '/tweet',
 		failureRedirect: '/signup',
 		failureFlash : true  
 	}));
@@ -127,23 +127,34 @@ new posts({
 	});
 	})	
     })
+
+/*twiter*/
+/* update twitan */
+router.get('/tweet', isAuthenticated, function(req, res){
+User.find(function(err, userss){
+mongoose.model('posts').find(function(err, posts){
+res.render('tweet', { user: req.user, title:"halaman Tweet", data:posts, datausers:userss});
+});
+})
+})
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {
 		req.logout();
 		res.redirect('/');
 	});   
 
-/*twiter*/
-/* update twitan */
+
 router.post('/twetan', function(req, res){
 var isitwet = req.body.twet;
 var T = new Twit(require('../models/config.js'));
 T.post('statuses/update', { status: isitwet }, function(err, data, response) {
 console.log("Tweet berhasil")
 
-res.redirect('/home');
+res.redirect('/tweet');
 })
 });
+
+
 /*-------*/	
 
 	return router;

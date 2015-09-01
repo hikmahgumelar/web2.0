@@ -4,7 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var io = require('socket.io').listen(800);
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
 // Connect to DB
@@ -39,6 +39,8 @@ app.use(flash());
 // Initialize Passport
 var initPassport = require('./passport/init');
 initPassport(passport);
+
+
 
 var routes = require('./routes/index')(passport);
 app.use('/', routes);

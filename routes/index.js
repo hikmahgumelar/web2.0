@@ -9,7 +9,7 @@ var isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 	// if the user is not authenticated then redirect him to the login page
-	res.redirect('/');
+	res.redirect('/masuk');
 }
 
 
@@ -133,9 +133,12 @@ new posts({
 router.get('/tweet', isAuthenticated, function(req, res){
 User.find(function(err, userss){
 mongoose.model('posts').find(function(err, posts){
-res.render('tweet', { user: req.user, title:"halaman Tweet", data:posts, datausers:userss});
+var T = new Twit(require('../models/config.js'));
+T.get('search/tweets', { q: "lewatmana", count:200}, function(err, datatwit){
+	res.json(datatwit.statuses[0].text);
 });
 })
+});
 })
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {
@@ -148,7 +151,7 @@ router.post('/twetan', function(req, res){
 var isitwet = req.body.twet;
 var T = new Twit(require('../models/config.js'));
 T.post('statuses/update', { status: isitwet }, function(err, data, response) {
-console.log("Tweet berhasil")
+console.log("response")
 
 res.redirect('/tweet');
 })

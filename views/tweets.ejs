@@ -559,7 +559,7 @@
                             <!-- Primary box -->
                             <div class="box box-primary" style="width: 700px; height: 300px; font-size: 14px;" >
                                 <div data-original-title="Header tooltip" class="box-header" data-toggle="tooltip" title="">
-                                    <h3 class="box-title">Twitter Box</h3>
+                                    <h3 class="box-title">Twitter Box <%=data1.length%></h3>
                                     <div class="box-tools pull-right">
                                         <button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-primary btn-xs" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -568,9 +568,16 @@
                            
                                 
                                 <div id="tweetd" class="box-body"> 
-                                  disini
-                                  <h1><%=twit%></h1>
-                                  
+                                  <% if (data1.length){ %>
+                                  <% for(i =0; i < data1.length;i++) { %>
+                                  <hr></hr>
+                                  <%-data1[i].user%>
+                                  <p><%=data1[i].text%></p>
+                                  <hr></hr>
+                                       <% } 
+                                        }else{ %>   
+                                    <h1> Tidak  Ada Tweet's Mengenai lalu lintas </h1>
+                                        <% } %> 
                                   
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">

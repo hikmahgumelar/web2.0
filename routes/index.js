@@ -134,12 +134,13 @@ router.get('/tweet', isAuthenticated, function(req, res){
 User.find(function(err, userss){
 mongoose.model('posts').find(function(err, posts){
 var T = new Twit(require('../models/config.js'));
-T.get('search/tweets', { q: "lewatmana", count:200}, function(err, datatwit){
-	res.json(datatwit.statuses[0].text);
-});
+T.get('search/tweets', { q: "lewatmana", count:5}, function(err, datatwit){
+	console.log(datatwit.statuses);
+	res.render('tweets', { user: req.user, datausers: userss, title:"Twitter Mtodule", data1:datatwit.statuses, data:posts});
 })
 });
 })
+});
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {
 		req.logout();

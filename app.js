@@ -4,13 +4,35 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var io = require('socket.io').listen(800);
+var Twit = require('twit');
+//var io = require('socket.io').listen(800);
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
 
 var app = express();
+var server = app.listen(3000);
+var debug = require('debug')('web2.0');
+
+var io = require('socket.io')(server);
+var watchList = ['twit', 'lewatmana'];
+var T = new Twit(require('./models/config.js'));
+io.sockets.on('connection', function (socket) {
+  console.log('Connected');
+
+
+ var stream = T.stream('statuses/filter', { track: watchList })
+
+  stream.on('tweet', function (tweet) {
+
+    io.sockets.emit('stream',tweet.text);
+console.log(tweet.text);
+
+  });
+ });
+ 
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

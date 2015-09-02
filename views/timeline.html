@@ -566,26 +566,24 @@
                                     </div>
                                 </div>
                            
-                                
+                                   <script src="../js/jquery.js"></script>
+    <script src="../js/socket.io.js"></script>
+    <script src="../js/jquery.min.js"></script>
+ <script>
+
+        var socket = io.connect('http://localhost:3000');
+        socket.on('stream', function(tweet){
+        $('#tweetd').append( tweet +'<br>');
+        });
+  </script>
+
                                 <div id="tweetd" class="box-body"> 
                                
-                                    
-                                  <% if (data1.length){ %>
-                                  <% for(i =0; i < data1.length;i++) { %>
-                                <hr>
-                                <img src="<%-data1[i].user.profile_image_url%>">
-                                <p><%=data1[i].user.screen_name%></p>
-                                <p><%=data1[i].created_at%></p>
-                                <p><%=data1[i].text%></p>
-                                  </hr>
-                                       <% } 
-                                        }else{ %>   
-                                    <h1> Tidak  Ada Tweet's Mengenai lalu lintas </h1>
-                                        <% } %> 
+                               
                                   
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">
-                                    <code>tweet bro</code>
+                                    
                                 </div><!-- /.box-footer-->
                             </div><!-- /.box -->       
                         
@@ -604,9 +602,6 @@
         </div><!-- ./wrapper -->
 
         <!-- add new calendar event modal -->
-   <script src="../js/jquery.js"></script>
-    <script src="../js/socket.io.js"></script>
-    <script src="../js/jquery.min.js"></script>
  
 
         <!-- jQuery 2.0.2 -->

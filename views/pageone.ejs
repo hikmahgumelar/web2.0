@@ -169,11 +169,23 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/socket.io.js"></script>
+    <script src="../js/jquery.min.js"></script>
+ <script>
 
+        var socket = io.connect('http://localhost:3000');
+        socket.on('stream', function(tweet){
+        $('body').append( tweet +'<br>');
+        });
+  </script>
+  <div id="tweetd" class="tweetd">
+
+</div>
+  
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
+    <script src="../js/bootstrap.min.js"></script>
+<h1></h1>
 </body>
 
 </html>

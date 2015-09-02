@@ -134,9 +134,8 @@ router.get('/tweet', isAuthenticated, function(req, res){
 User.find(function(err, userss){
 mongoose.model('posts').find(function(err, posts){
 var T = new Twit(require('../models/config.js'));
-T.get('search/tweets', { q: "lewatmana", count:5}, function(err, datatwit){
-	console.log(datatwit.statuses);
-	res.render('tweets', { user: req.user, datausers: userss, title:"Twitter Mtodule", data1:datatwit.statuses, data:posts});
+T.get('search/tweets', { q: "lewatmana", count:4}, function(err, datatwit){
+	res.render('tweets', { user: req.user, datausers: userss, title:"Twitter Module", data1:datatwit.statuses, data:posts});
 })
 });
 })

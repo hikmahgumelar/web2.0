@@ -570,10 +570,12 @@
                                 <div id="tweetd" class="box-body"> 
                                   <% if (data1.length){ %>
                                   <% for(i =0; i < data1.length;i++) { %>
-                                  <hr></hr>
-                                  <%-data1[i].user%>
-                                  <p><%=data1[i].text%></p>
-                                  <hr></hr>
+                                <hr>
+                                <img src="<%-data1[i].user.profile_image_url%>">
+                                <p><%=data1[i].user.screen_name%></p>
+                                <p><%=data1[i].created_at%></p>
+                                <p><%=data1[i].text%></p>
+                                  </hr>
                                        <% } 
                                         }else{ %>   
                                     <h1> Tidak  Ada Tweet's Mengenai lalu lintas </h1>

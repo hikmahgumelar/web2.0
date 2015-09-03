@@ -15,24 +15,26 @@ var app = express();
 var server = app.listen(3000);
 var debug = require('debug')('web2.0');
 
+// blok tweet socket 
 var io = require('socket.io')(server);
-var watchList = ['twit', 'lewatmana'];
 var T = new Twit(require('./models/config.js'));
+var watchList = ['lewatmana', 'hikmahgumelar'];
+
 io.sockets.on('connection', function (socket) {
-  console.log('Connected');
+  console.log('connect');
 
+var stream = T.stream('statuses/filter', { track: watchList })
 
- var stream = T.stream('statuses/filter', { track: watchList })
+   stream.on('tweet', function (tweet) {
 
-  stream.on('tweet', function (tweet) {
-
-    io.sockets.emit('stream',tweet.text);
-console.log(tweet.text);
-
-  });
- });
- 
-
+    // io.sockets.emit('stream',tweet.text);
+// console.log(tweet.text);
+    socket.emit('message', { message: tweet.text });
+    socket.on('send', function (data) {
+        io.sockets.emit('message', data);
+    });
+});
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

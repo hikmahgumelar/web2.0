@@ -108,12 +108,15 @@ new posts({
 
 	/* GET Registration Page */
 	router.get('/signup', function(req, res){
-		res.render('register',{message: req.flash('message')});
+		var gbr = req.body.pic;	
+		res.render('register',{gambar:gbr, message: req.flash('message')});
 	});
 
 	/* Handle Registration POST */
+
 	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/tweet',
+
+		successRedirect: '/home',
 		failureRedirect: '/signup',
 		failureFlash : true  
 	}));

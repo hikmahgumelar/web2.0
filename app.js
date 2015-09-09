@@ -18,7 +18,7 @@ var debug = require('debug')('web2.0');
 // blok tweet socket 
 var io = require('socket.io')(server);
 var T = new Twit(require('./models/config.js'));
-var watchList = ['lewatmana', 'hikmahgumelar'];
+var watchList = ['lewatmana', 'hikmahgumelar','twit'];
 
 io.sockets.on('connection', function (socket) {
   console.log('connect');

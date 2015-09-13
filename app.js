@@ -10,7 +10,8 @@ var dbConfig = require('./db');
 var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
-
+//upload file
+var multer  = require('multer');
 var app = express();
 var server = app.listen(3000);
 var debug = require('debug')('web2.0');
@@ -35,6 +36,7 @@ var stream = T.stream('statuses/filter', { track: watchList })
     });
 });
 })
+//blok upload file
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +44,7 @@ app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(logger('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
@@ -54,6 +57,7 @@ var expressSession = require('express-session');
 app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
  // Using the flash middleware provided by connect-flash to store messages in session
  // and displaying in templates

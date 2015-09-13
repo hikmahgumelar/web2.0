@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%=title%></title>
+    <title><%=data.judul%></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +27,8 @@
 </head>
 
 <body>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55913fd240a1d97e" async="async"></script>
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -69,8 +71,12 @@
 
                 <!-- First Blog Post -->
                 <h1><%=data.judul%></h1>
+
 				<p>Pengarang : <%=data.pengarang%></p>
-				<p>tanggal : <%=data.tgl%></p>
+			
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_native_toolbox"></div>
+                <p>tanggal : <%=data.tgl%></p>
 				<hr></hr>
 
 				<p><%-data.isi%></p>

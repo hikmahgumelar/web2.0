@@ -2,6 +2,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var util = require('util');
+var fs = require('fs');
 
 module.exports = function(passport){
 
@@ -25,15 +26,16 @@ module.exports = function(passport){
                     } else {
                         // if there is no user with that email
                         // create the user
+                        
                         var newUser = new User();
 
                         // set the user's local credentials
                         newUser.username = username;
                         newUser.password = createHash(password);
                         newUser.path = "/uploads/" + username + ".jpg"; 
-                        newUser.email = req.param('email');
-                        newUser.firstName = req.param('firstName');
-                        newUser.lastName = req.param('lastName');
+                        newUser.email = req.body.email;
+                        newUser.firstName = req.body.firstName;
+                        newUser.lastName = req.body.lastName;
 
                         // save the user
                         newUser.save(function(err) {
@@ -41,25 +43,9 @@ module.exports = function(passport){
                                 console.log('Error in Saving user: '+err);  
                                 throw err;  
                             }
-uploadImage = function(req, res, next){
-        console.log('file info: ',req.files.image);
 
-        //split the url into an array and then get the last chunk and render it out in the send req.
-        var pathArray = req.files.image.path.split( '/' );
-
-        res.send(util.format(' Task Complete \n uploaded %s (%d Kb) to %s as %s'
-            , req.files.image.name
-            , req.files.image.size / 1024 | 0
-            , req.files.image.path
-            , req.body.title
-            , req.files.image
-            , '<img src="uploads/' + pathArray[(pathArray.length - 1)] + '">'
-        ));
-
-
-};
-
-
+   
+                            
                             console.log('User Registration succesful');    
                             return done(null, newUser);
                         });

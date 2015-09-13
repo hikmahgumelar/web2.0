@@ -2,6 +2,13 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Twit = require('twit');
+var multer = require('multer');
+var app = express();
+var done=false;
+
+
+
+
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
 	// Passport adds this method to request object. A middleware is allowed to add properties to
@@ -42,7 +49,7 @@ new posts({
   });
 })
     
-    
+   
     /* GET PAGE utama */
     router.get('/', function(req, res){
     mongoose.model('posts').find(function(err, posts){
@@ -108,12 +115,12 @@ new posts({
 
 	/* GET Registration Page */
 	router.get('/signup', function(req, res){
-		var gbr = req.body.pic;	
-		res.render('register',{gambar:gbr, message: req.flash('message')});
+	
+		res.render('register',{message: req.flash('message')});
 	});
 
 	/* Handle Registration POST */
-
+	
 	router.post('/signup', passport.authenticate('signup', {
 
 		successRedirect: '/home',
